@@ -12,7 +12,7 @@ public class FlightFinder {
         flights.put("Cracow", true);
         flights.put("Rzeszow", true);
 
-        if (flights.get(flight.getArrivalAirport()) != null) {
+        if (flights.containsKey(flight.getArrivalAirport())) {
             return flights.get(flight.getArrivalAirport());
         } else {
             throw new RouteNotFoundException();
