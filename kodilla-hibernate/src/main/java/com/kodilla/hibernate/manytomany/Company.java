@@ -5,6 +5,12 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyByFirstThreeCharacters",
+        query = "SELECT * FROM COMPANIES WHERE INSTR(COMPANY_NAME, :CHARACTERS)",
+        resultClass = Company.class
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
