@@ -98,13 +98,15 @@ public class CompanyDaoTestSuite {
         List<Company> companyByFirstThreeLetters = companyDao.retrieveCompanyByFirstThreeCharacters("Sof");
 
         //Then
+        assertEquals(1, employeeByLastName.size());
+        assertEquals(1, companyByFirstThreeLetters.size());
+
+        //CleanUp
         try {
-            assertEquals(1, employeeByLastName.size());
-            assertEquals(1, companyByFirstThreeLetters.size());
-        } finally {
-            //CleanUp
             employeeDao.deleteAll();
             companyDao.deleteAll();
+        } finally {
+
         }
     }
 }
