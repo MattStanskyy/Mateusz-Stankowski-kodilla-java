@@ -68,8 +68,6 @@ public class CompanyDaoTestSuite {
     @Test
     void testRetrievers() {
 
-        employeeDao.deleteAll();
-        companyDao.deleteAll();
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -103,7 +101,7 @@ public class CompanyDaoTestSuite {
         try {
             assertEquals(1, employeeByLastName.size());
             assertEquals(1, companyByFirstThreeLetters.size());
-        } catch (Exception e) {
+        } finally {
             //CleanUp
             employeeDao.deleteAll();
             companyDao.deleteAll();
