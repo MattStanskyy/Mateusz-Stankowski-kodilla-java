@@ -12,20 +12,15 @@ BEGIN
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET FINISHED = 1;
     OPEN ALL_BOOKS;
     WHILE (FINISHED = 0) DO
-
-            IF (RENTNUMBER >= 2) THEN
-                UPDATE BOOKS SET BESTSELLER = TRUE
-                WHERE BOOK_ID = BESTSELLER_ID;
-            ELSE
-                UPDATE BOOKS SET BESTSELLER = FALSE
-                WHERE BOOK_ID = BESTSELLER_ID;
-            END IF;
-
             FETCH ALL_BOOKS INTO BESTSELLER_ID;
             IF (FINISHED = 0) THEN
                 SELECT COUNT(*) FROM RENTS
                 WHERE BOOK_ID = BESTSELLER_ID
                 INTO RENTNUMBER;
+                IF (RENTNUMBER >= 2) THEN
+                UPDATE BOOKS SET BESTSELLER = TRUE
+                WHERE BOOK_ID = BESTSELLER_ID;
+                END IF;
             END IF;
             COMMIT;
         END WHILE;
