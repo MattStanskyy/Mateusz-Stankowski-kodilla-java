@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class EBayTestingApp {
 
     public static final String SEARCHFIELD = "_nkw";
-    public static final String SUBBMITBUTTON = "gh-btn";
+    public static final String SUBMITBUTTON = "gh-btn";
 
     public static void main(String[] args) {
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
@@ -17,7 +17,7 @@ public class EBayTestingApp {
         WebElement searchField = driver.findElement(By.name(SEARCHFIELD));
         searchField.sendKeys("Laptop");
 
-        WebElement agreeButon = driver.findElement(By.id(SUBBMITBUTTON));
-        agreeButon.click();
+        WebElement submitButton = driver.findElement(By.id(SUBMITBUTTON));
+        submitButton.click();
     }
 }
