@@ -8,26 +8,34 @@ import org.openqa.selenium.support.ui.Select;
 
 public class FacebookTestingApp {
 
-    public static final String XPATH_AGREEBUTTON = "//div[contains(@class, \"_9o-r\")]/button[2]";
-    public static final String XPATH_SIGNUPBUTTON = "//div[contains(@class, \"_6ltg\")]/a";
-//    public static final String XPATH_DAY_SELECT = "//div[contains(@class, \"_5k_5\")]/span/span/select[1]";
-    public static final String XPATH_DAY_SELECT = "/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[1]/form/div[1]/div[5]/div[2]/span/span/select[1]";
+    public static final String XPATH_AGREE_BUTTON = "//div[contains(@class, \"_9o-r\")]/button[2]";
+    public static final String XPATH_SIGNUP_BUTTON = "//div[contains(@class, \"_6ltg\")]/a";
+    public static final String XPATH_DAY_SELECT = "//div[contains(@class, \"_5k_5\")]/span/span/select[1]";
+    public static final String XPATH_MONTH_SELECT = "//div[contains(@class, \"_5k_5\")]/span/span/select[2]";
+    public static final String XPATH_YEAR_SELECT = "//div[contains(@class, \"_5k_5\")]/span/span/select[3]";
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get("https://www.facebook.com/");
 
-        WebElement agreeButton = driver.findElement(By.xpath(XPATH_AGREEBUTTON));
+        WebElement agreeButton = driver.findElement(By.xpath(XPATH_AGREE_BUTTON));
         agreeButton.click();
 
-        WebElement signUpButton = driver.findElement(By.xpath(XPATH_SIGNUPBUTTON));
+        WebElement signUpButton = driver.findElement(By.xpath(XPATH_SIGNUP_BUTTON));
         signUpButton.click();
 
-//        while (!driver.findElement(By.xpath(XPATH_DAY_SELECT)).isDisplayed());
+        Thread.sleep(2000);
 
-        WebElement selectCombo = driver.findElement(By.xpath(XPATH_DAY_SELECT));
-        Select selectBoard = new Select(selectCombo);
-        selectBoard.selectByIndex(15);
+        WebElement daySelect = driver.findElement(By.xpath(XPATH_DAY_SELECT));
+        Select selectDayBoard = new Select(daySelect);
+        selectDayBoard.selectByIndex(16);
+
+        WebElement monthSelect = driver.findElement(By.xpath(XPATH_MONTH_SELECT));
+        Select selectMonthBoard = new Select(monthSelect);
+        selectMonthBoard.selectByIndex(5);
+
+        WebElement yearSelect = driver.findElement(By.xpath(XPATH_YEAR_SELECT));
+        Select selectYearBoard = new Select(yearSelect);
+        selectYearBoard.selectByValue("1995");
     }
 }
