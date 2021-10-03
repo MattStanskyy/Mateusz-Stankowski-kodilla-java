@@ -1,39 +1,37 @@
 package com.kodilla.rps.player;
 
-import com.kodilla.rps.shapes.Shape;
+import java.util.Random;
 
-import java.util.Scanner;
+public class Computer {
 
-public class Computer implements Player {
-
-    private Scanner scanner = new Scanner(System.in);
     private int score;
 
-    @Override
-    public String getName(){
+
+    public String getName() {
         return "Computer";
     }
 
-    @Override
-    public int getHand() {
-        int hand = scanner.nextInt();
-
-        if (hand == 1) {
-            System.out.println(Shape.ROCK);
-        } else if (hand == 2) {
-            System.out.println(Shape.PAPER);
-        } else if (hand == 3) {
-            System.out.println(Shape.SCISSORS);
+    public int computerChoiceGenerator() {
+        Random generator = new Random();
+        int result = generator.nextInt(3);
+        if(result == 0){
+            System.out.println("ROCK");
+        }else if(result == 1){
+            System.out.println("PAPER");
+        } else if(result == 2) {
+            System.out.println("SCISSORS");
         }
-        return hand;
+        return result;
     }
 
-    @Override
     public int getScore() {
         return score;
     }
 
-    @Override
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public int addScore() {
         return this.score++;
     }
